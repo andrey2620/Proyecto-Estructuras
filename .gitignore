@@ -1,41 +1,49 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
+# Compilados
 *.exe
+*.obj
+*.o
+*.so
+*.dll
+*.lib
+*.a
 *.out
-*.app
 
-# debug information files
-*.dwo
+# Directorios de compilación de Visual Studio
+[Bb]uild/
+[Bb]in/
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+ipch/
+*.opensdf
+*.sdf
+*.cache
+*.pdb
+*.idb
+*.VC.db
+*.VC.VC.opendb
+
+# Archivos de usuario y temporales de VS
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+.vs/
+
+# Archivos generados
+*.log
+*.tlog
+*.lastbuildstate
+
+# Archivos temporales de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de CMake generados (opcional)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
