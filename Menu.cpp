@@ -4,6 +4,7 @@
 #include "iostream"
 #include "limits"
 #include "AVL.h"
+#include "AVLAnio.h"
 #include <string> 
 #include <fstream> 
 
@@ -89,7 +90,10 @@ void opcionMostrarPorCapacidad(const AVL& arbol) {
 }
 
 void opcionMostrarPorAnio(const AVL& arbol) {
-	arbol.mostrarPorAnio();
+	AVLAnio arbolAnio;
+	arbolAnio.insertarDesdeAVL(const_cast<AVL&>(arbol));
+	std::cout << "\n--- Sedes ordenadas por año de inauguración ---\n";
+	arbolAnio.mostrarOrdenadoPorAnio();
 }
 
 void AVL::modificar(const std::string& codigoIATA) {

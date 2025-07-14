@@ -12,12 +12,9 @@ int main()
 
     AVL arbol;
 
-
     ManaCSV::cargarSedes(arbol, "sedes2026.csv");
 
-
     mostrarMenuPrincipal(arbol);
-
 
     ManaCSV::guardarSedes(arbol, "sedes2026.csv");
 
