@@ -163,3 +163,24 @@ void AVL::mostrarSede(const Sede& s) const {
         << "\nCapacidad: " << s.capacidad
         << "\nAño de inauguración: " << s.ani << "\n";
 }
+
+void agregarPaisSiNoExiste(const std::string& pais, std::string& paisesAcumulados) {
+    if (paisesAcumulados.find("|" + pais + "|") == std::string::npos) {
+        std::cout << "- " << pais << std::endl;
+        paisesAcumulados += "|" + pais + "|";
+    }
+}
+
+void mostrarPaisesUnicosRec(AVL::Nodo* nodo, std::string& paisesAcumulados) {
+    if (!nodo) return;
+    mostrarPaisesUnicosRec(nodo->izquierda, paisesAcumulados);
+    agregarPaisSiNoExiste(nodo->sede.pais, paisesAcumulados);
+    mostrarPaisesUnicosRec(nodo->derecha, paisesAcumulados);
+}
+
+void AVL::mostrarPaisesDisponibles() const {
+    std::string paisesAcumulados = "";
+    std::cout << "\n--- Lista de países disponibles ---\n";
+    mostrarPaisesUnicosRec(raiz, paisesAcumulados);
+    std::cout << "----------------------------------\n";
+}

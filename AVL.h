@@ -51,6 +51,8 @@ public:
     void mostrarPorCapacidad(int minCapacidad) const;
     void mostrarPorAnio() const;
 
+    void mostrarPaisesDisponibles() const;
+
     void recorridoGuardarCSV(std::ofstream& archivo) const;
 };
 

@@ -80,9 +80,11 @@ void opcionMostrarOrdenado(const AVL& arbol) {
 }
 
 void opcionMostrarPorPais(const AVL& arbol) {
+	arbol.mostrarPaisesDisponibles();
 	std::string pais = leerTexto("País a buscar: ");
 	arbol.mostrarPorPais(pais);
 }
+
 
 void opcionMostrarPorCapacidad(const AVL& arbol) {
 	int min = solicitarNumero("Capacidad mínima: ", 1);
