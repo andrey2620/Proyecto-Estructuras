@@ -36,6 +36,7 @@ private:
     void mostrarSede(const Sede& sede) const;
     void guardarRecursivo(Nodo* nodo, std::ofstream& archivo) const;
     friend class AVLAnio;
+    friend class Grafo;
 
 public:
     AVL();

@@ -3,10 +3,12 @@
 #include <string>
 
 class AVL;
+class Grafo;
 
 class ManaCSV {
 
 public:
     static void cargarSedes(AVL& arbol, const std::string& rutaArchivo);
     static void guardarSedes(const AVL& arbol, const std::string& rutaArchivo);
+    static void cargarDistancias(Grafo& grafo, const std::string& rutaArchivo);
 };

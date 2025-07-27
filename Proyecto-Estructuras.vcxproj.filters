@@ -30,6 +30,9 @@
     <ClCompile Include="AVLAnio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Grafo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AVL.h">
@@ -50,9 +53,13 @@
     <ClInclude Include="AVLAnio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Grafo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="sedes2026.csv" />
     <None Include="sedesV1.csv" />
+    <None Include="distancias.csv" />
   </ItemGroup>
 </Project>
