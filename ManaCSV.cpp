@@ -1,5 +1,6 @@
 #include "ManaCSV.h"
 #include "AVL.h"
+#include "Grafo.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -43,6 +44,30 @@ void ManaCSV::guardarSedes(const AVL& arbol, const std::string& rutaArchivo) {
     archivo << "codigoIATA,pais,ciudad,estadioFIFA,estadioOficial,capacidad,anio\n";
 
     arbol.recorridoGuardarCSV(archivo);
+
+    archivo.close();
+}
+
+void ManaCSV::cargarDistancias(Grafo& grafo, const std::string& rutaArchivo) {
+    std::ifstream archivo(rutaArchivo);
+    if (!archivo.is_open()) {
+        std::cerr << "No se pudo abrir el archivo: " << rutaArchivo << std::endl;
+        return;
+    }
+
+    std::string linea;
+    std::getline(archivo, linea); 
+
+    while (std::getline(archivo, linea)) {
+        std::stringstream ss(linea);
+        std::string origen, destino, dist;
+
+        std::getline(ss, origen, ',');
+        std::getline(ss, destino, ',');
+        std::getline(ss, dist, ',');
+
+        grafo.agregarArista(origen, destino, std::stoi(dist));
+    }
 
     archivo.close();
 }

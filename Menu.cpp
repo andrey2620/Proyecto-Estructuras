@@ -23,7 +23,7 @@ int solicitarNumero(const std::string& mensaje, int minimo) {
 		if (std::cin.fail() || valor < minimo) {
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "Número inválido. Intente nuevamente.\n";
+			std::cout << "Numero invalido. Intente nuevamente.\n";
 		}
 		else {
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -33,19 +33,19 @@ int solicitarNumero(const std::string& mensaje, int minimo) {
 }
 
 Sede solicitarDatosSede() {
-	std::string codigoIATA = leerTexto("Código IATA: ");
-	std::string pais = leerTexto("País: ");
+	std::string codigoIATA = leerTexto("Codigo IATA: ");
+	std::string pais = leerTexto("Pais: ");
 	std::string ciudad = leerTexto("Ciudad: ");
 	std::string estadioFIFA = leerTexto("Estadio FIFA: ");
 	std::string estadioOficial = leerTexto("Estadio Oficial: ");
 	int capacidad = solicitarNumero("Capacidad: ", 1);
-	int anio = solicitarNumero("Año de inauguración: ", 1800);
+	int anio = solicitarNumero("Anio de inauguracion: ", 1800);
 
 	return Sede(codigoIATA, pais, ciudad, estadioFIFA, estadioOficial, capacidad, anio);
 }
 
 std::string solicitarCodigoIATA() {
-	return leerTexto("Ingrese el código IATA: ");
+	return leerTexto("Ingrese el codigo IATA: ");
 }
 
 
@@ -56,7 +56,7 @@ void opcionInsertar(AVL& arbol) {
 		std::cout << "Sede insertada exitosamente.\n";
 	}
 	else {
-		std::cout << "Datos inválidos. No se insertó.\n";
+		std::cout << "Datos invalidos. No se insertaron.\n";
 	}
 }
 
@@ -81,22 +81,32 @@ void opcionMostrarOrdenado(const AVL& arbol) {
 
 void opcionMostrarPorPais(const AVL& arbol) {
 	arbol.mostrarPaisesDisponibles();
-	std::string pais = leerTexto("País a buscar: ");
+	std::string pais = leerTexto("Pais a buscar: ");
 	arbol.mostrarPorPais(pais);
 }
 
 
 void opcionMostrarPorCapacidad(const AVL& arbol) {
-	int min = solicitarNumero("Capacidad mínima: ", 1);
+	int min = solicitarNumero("Capacidad minima: ", 1);
 	arbol.mostrarPorCapacidad(min);
 }
 
 void opcionMostrarPorAnio(const AVL& arbol) {
 	AVLAnio arbolAnio;
 	arbolAnio.insertarDesdeAVL(const_cast<AVL&>(arbol));
-	std::cout << "\n--- Sedes ordenadas por año de inauguración ---\n";
+	std::cout << "\n--- Sedes ordenadas por anio de inauguracion ---\n";
 	arbolAnio.mostrarOrdenadoPorAnio();
 }
+
+void opcionCalcularRutaMinima(Grafo& grafo) {
+	std::string origen = solicitarCodigoIATA();
+	grafo.dijkstra(origen);
+}
+
+void opcionCalcularMST(Grafo& grafo) {
+	grafo.prim();
+}
+
 
 void AVL::modificar(const std::string& codigoIATA) {
 	Nodo* nodo = buscar(raiz, codigoIATA);
@@ -108,7 +118,7 @@ void AVL::modificar(const std::string& codigoIATA) {
 	mostrarSede(nodo->sede);
 
 	std::string entrada;
-	entrada = leerTexto("Nuevo país (enter para no cambiar): ");
+	entrada = leerTexto("Nuevo pais (enter para no cambiar): ");
 	if (!entrada.empty()) nodo->sede.pais = entrada;
 
 	entrada = leerTexto("Nueva ciudad: ");
@@ -123,7 +133,7 @@ void AVL::modificar(const std::string& codigoIATA) {
 	int capacidad = solicitarNumero("Nueva capacidad (0 para mantener): ");
 	if (capacidad > 0) nodo->sede.capacidad = capacidad;
 
-	int anio = solicitarNumero("Nuevo año (0 para mantener): ");
+	int anio = solicitarNumero("Nuevo anio (0 para mantener): ");
 	if (anio >= 1800) nodo->sede.ani = anio;
 }
 
@@ -199,20 +209,22 @@ bool Validaciones::anioValido(int anio) {
 
 
 
-void mostrarMenuPrincipal(AVL& arbol) {
+void mostrarMenuPrincipal(AVL& arbol, Grafo& grafo) {
 	int opcion;
 	do {
-		std::cout << "\n--- Menú Mundial FIFA 2026 ---\n";
+		std::cout << "\n--- Menu Mundial FIFA 2026 ---\n";
 		std::cout << "1. Insertar sede\n";
 		std::cout << "2. Eliminar sede\n";
 		std::cout << "3. Modificar sede\n";
 		std::cout << "4. Buscar sede\n";
 		std::cout << "5. Mostrar sedes ordenadas por IATA\n";
-		std::cout << "6. Mostrar sedes por país\n";
+		std::cout << "6. Mostrar sedes por pais\n";
 		std::cout << "7. Mostrar sedes por capacidad\n";
-		std::cout << "8. Mostrar sedes por año de inauguración\n";
+		std::cout << "8. Mostrar sedes por anio de inauguracion\n";
+		std::cout << "9. Calcular ruta mas corta entre sedes\n";
+		std::cout << "10. Generar red de transporte minima\n";
 		std::cout << "0. Salir\n";
-		std::cout << "Seleccione una opción: ";
+		std::cout << "Seleccione una opcion: ";
 		std::cin >> opcion;
 		std::cin.ignore();
 
@@ -225,8 +237,10 @@ void mostrarMenuPrincipal(AVL& arbol) {
 		case 6: opcionMostrarPorPais(arbol); break;
 		case 7: opcionMostrarPorCapacidad(arbol); break;
 		case 8: opcionMostrarPorAnio(arbol); break;
-		case 0: std::cout << "¡Hasta pronto!\n"; break;
-		default: std::cout << "Opción inválida.\n";
+		case 9: opcionCalcularRutaMinima(grafo); break;
+		case 10: opcionCalcularMST(grafo); break;
+		case 0: std::cout << "Hasta pronto!\n"; break;
+		default: std::cout << "Opcion invalida.\n";
 		}
 	} while (opcion != 0);
 }

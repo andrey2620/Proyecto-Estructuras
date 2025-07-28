@@ -4,6 +4,7 @@
 #include "Menu.h"
 #include "ManaCSV.h"
 #include "AVL.h"
+#include "Grafo.h"
 #include <iostream>
 
 int main()
@@ -11,10 +12,13 @@ int main()
     std::setlocale(LC_ALL, "Spanish_Spain.1252");
 
     AVL arbol;
+    Grafo grafo;
 
     ManaCSV::cargarSedes(arbol, "sedes2026.csv");
+    grafo.inicializarDesdeAVL(arbol);
+    ManaCSV::cargarDistancias(grafo, "distancias.csv");
 
-    mostrarMenuPrincipal(arbol);
+    mostrarMenuPrincipal(arbol, grafo);
 
     ManaCSV::guardarSedes(arbol, "sedes2026.csv");
 
