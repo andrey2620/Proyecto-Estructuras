@@ -35,6 +35,9 @@ private:
 
     void mostrarSede(const Sede& sede) const;
     void guardarRecursivo(Nodo* nodo, std::ofstream& archivo) const;
+
+	void listarTodasLasCiudades(Nodo* nodo) const;
+
     friend class AVLAnio;
     friend class Grafo;
 
@@ -55,6 +58,8 @@ public:
     void mostrarPaisesDisponibles() const;
 
     void recorridoGuardarCSV(std::ofstream& archivo) const;
+
+    void mostrarTodasLasCiudades() const;
 };
 
 #endif // AVL_H

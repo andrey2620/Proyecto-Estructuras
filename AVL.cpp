@@ -184,3 +184,24 @@ void AVL::mostrarPaisesDisponibles() const {
     mostrarPaisesUnicosRec(raiz, paisesAcumulados);
     std::cout << "----------------------------------\n";
 }
+
+void AVL::listarTodasLasCiudades(Nodo* nodo) const {
+    if (!nodo) return;
+    listarTodasLasCiudades(nodo->izquierda);
+
+    const Sede& s = nodo->sede;
+    std::cout << "\n Ciudad: " << s.ciudad
+              << "\n País: " << s.pais
+		      << "\n Estadio: " << s.estadioFIFA
+		      << "\n Capacidad: " << s.capacidad
+		      << "\n Inauguración: " << s.ani
+		      << "\n Código IATA: " << s.codigoIATA
+		<< "\n----------------------------------\n";
+	listarTodasLasCiudades(nodo->derecha);
+}
+
+void AVL::mostrarTodasLasCiudades() const {
+	std::cout << "\n--- Lista de todas las ciudades ---\n";
+	listarTodasLasCiudades(raiz);
+	std::cout << "----------------------------------\n";
+}

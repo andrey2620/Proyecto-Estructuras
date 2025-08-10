@@ -223,6 +223,7 @@ void mostrarMenuPrincipal(AVL& arbol, Grafo& grafo) {
 		std::cout << "8. Mostrar sedes por anio de inauguracion\n";
 		std::cout << "9. Calcular ruta mas corta entre sedes\n";
 		std::cout << "10. Generar red de transporte minima\n";
+		std::cout << "11. Mostrar todas las ciudades\n";
 		std::cout << "0. Salir\n";
 		std::cout << "Seleccione una opcion: ";
 		std::cin >> opcion;
@@ -239,6 +240,7 @@ void mostrarMenuPrincipal(AVL& arbol, Grafo& grafo) {
 		case 8: opcionMostrarPorAnio(arbol); break;
 		case 9: opcionCalcularRutaMinima(grafo); break;
 		case 10: opcionCalcularMST(grafo); break;
+		case 11: arbol.mostrarTodasLasCiudades(); break;
 		case 0: std::cout << "Hasta pronto!\n"; break;
 		default: std::cout << "Opcion invalida.\n";
 		}
